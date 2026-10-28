@@ -1,3 +1,7 @@
+// Stop images from being dragged around with the mouse
+document.querySelectorAll('img').forEach((img) => { img.draggable = false; });
+document.addEventListener('dragstart', (e) => { if (e.target.closest && e.target.closest('a, img, svg')) e.preventDefault(); });
+
 // Mobile menu
 const toggle = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.menu');
@@ -8,21 +12,13 @@ if (toggle && menu) {
   });
 }
 
-// Scroll reveal
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
 // Product gallery
 const mainImg = document.querySelector('.gallery .main img');
 document.querySelectorAll('.thumbs button').forEach((btn) => {
   btn.addEventListener('click', () => {
     const img = btn.querySelector('img');
-    mainImg.style.opacity = 0;
-    setTimeout(() => { mainImg.src = img.src; mainImg.alt = img.alt; mainImg.style.opacity = 1; }, 180);
+    mainImg.src = img.src;
+    mainImg.alt = img.alt;
     document.querySelectorAll('.thumbs button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
   });
 });
