@@ -28,7 +28,7 @@ body {
   font-size: 17px;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 img { max-width: 100%; display: block; -webkit-user-drag: none; user-select: none; -webkit-user-select: none; }
 svg { user-select: none; -webkit-user-select: none; }
@@ -348,3 +348,8 @@ details p { padding: 0 0 22px; color: var(--muted); max-width: 620px; }
 
 /* The site is intentionally still: no animations or transitions anywhere */
 *, *::before, *::after { animation: none !important; transition: none !important; }
+
+/* Lock the page in place: no sideways scrolling and no elastic bounce at the edges */
+html, body { overscroll-behavior: none; max-width: 100%; }
+html { overflow-x: clip; }
+@supports not (overflow: clip) { html, body { overflow-x: hidden; } }
