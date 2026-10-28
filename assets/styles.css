@@ -153,6 +153,7 @@ section { padding: 100px 0; }
 .about { background: var(--cream); border-block: 1px solid var(--line); }
 .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 72px; align-items: center; }
 .portrait {
+  width: 90%;
   aspect-ratio: 4 / 5; border-radius: 200px 200px 24px 24px; background: var(--forest);
   display: grid; place-items: center; position: relative; overflow: hidden;
 }
@@ -284,7 +285,7 @@ details p { padding: 0 0 22px; color: var(--muted); max-width: 620px; }
   .pillar, .pillar + .pillar { padding: 32px 0; border-left: 0; border-bottom: 1px solid var(--line); }
   .foot-grid { grid-template-columns: 1fr 1fr; }
   .foot-grid > :first-child { grid-column: 1 / -1; }
-  .portrait { max-width: 380px; }
+  .portrait { max-width: 360px; }
   .more { grid-template-columns: 140px 1fr; }
   .more .btn { grid-column: 1 / -1; justify-self: start; }
 }
@@ -350,3 +351,8 @@ details p { padding: 0 0 22px; color: var(--muted); max-width: 620px; }
 .pl-item span { display: block; margin-top: 10px; font: italic clamp(1.3rem, 2.4vw, 1.8rem)/1 var(--display); color: var(--paper); }
 .pl-spark { position: absolute; color: var(--gold); font-size: 1.2rem; opacity: .8; }
 .logo .name em { color: var(--moss); }
+
+@media (max-width: 760px) {
+  .portrait { width: 78%; max-width: 290px; margin-inline: auto; }
+  .pl-item span { font-size: 1.15rem; margin-top: 6px; }
+}
