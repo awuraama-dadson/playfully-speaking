@@ -32,5 +32,23 @@ if (buyBox && sticky) {
   }).observe(buyBox);
 }
 
+// Game carousel: arrows step one screen of cards, progress bar tracks the scroll
+const wall = document.querySelector('.collection');
+if (wall && wall.closest('.collection-carousel')) {
+  const [prev, next] = document.querySelectorAll('.collection-arrow');
+  const bar = document.querySelector('.collection-progress span');
+  const update = () => {
+    const max = wall.scrollWidth - wall.clientWidth;
+    bar.style.width = (max > 0 ? (wall.clientWidth + wall.scrollLeft) / wall.scrollWidth * 100 : 100) + '%';
+    prev.disabled = wall.scrollLeft <= 2;
+    next.disabled = wall.scrollLeft >= max - 2;
+  };
+  const step = () => wall.clientWidth + parseFloat(getComputedStyle(wall).columnGap || 0);
+  [prev, next].forEach((btn) => btn.addEventListener('click', () => wall.scrollBy({ left: step() * Number(btn.dataset.dir) })));
+  wall.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+}
+
 // Footer year
 document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });

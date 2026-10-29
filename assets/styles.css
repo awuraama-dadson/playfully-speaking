@@ -21,6 +21,7 @@
 .theme-groupchat { --accent: #b8172f; --accent-soft: #f9e1e4; }
 .theme-silly { --accent: #a8203a; --accent-soft: #f7e0e4; }
 .theme-lovemedareme { --accent: #9b1b45; --accent-soft: #f8e1e9; }
+.theme-chale { --accent: #006b3f; --accent-soft: #e0efe6; }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -114,7 +115,25 @@ section { padding: 100px 0; }
 .hero-stack .sticker b { display: block; font: 2.2rem/1 var(--display); letter-spacing: 0; text-transform: none; }
 
 /* Game cards (collection) */
-.collection { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.collection-carousel { max-width: 900px; margin-inline: auto; }
+.collection {
+  --gap: 16px;
+  display: flex; gap: var(--gap); overflow-x: auto;
+  scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  overscroll-behavior-x: contain; scrollbar-width: none;
+  padding: 2px 2px 24px;
+}
+.collection::-webkit-scrollbar { display: none; }
+.collection .game-card { flex: 0 0 calc((100% - 2 * var(--gap)) / 3); scroll-snap-align: start; }
+.collection-controls { display: flex; align-items: center; justify-content: center; gap: 20px; }
+.collection-arrow {
+  width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--forest);
+  background: var(--cream); color: var(--forest); font-size: 18px; cursor: pointer;
+}
+.collection-arrow:hover:not(:disabled) { background: var(--forest); color: var(--paper); }
+.collection-arrow:disabled { opacity: .35; cursor: default; }
+.collection-progress { width: min(220px, 40vw); height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.collection-progress span { display: block; height: 100%; width: 0; background: var(--forest); }
 .game-card {
   display: flex; flex-direction: column; background: var(--cream); border: 1px solid var(--line);
   border-radius: 20px; padding: 10px; text-decoration: none;
@@ -164,7 +183,7 @@ section { padding: 100px 0; }
 .cta-band p { color: rgba(243, 235, 221, .75); max-width: 520px; margin: 0 auto 32px; }
 .cta-band .btn-primary { background: var(--paper); color: var(--forest); }
 .cta-band .btn-primary:hover { background: var(--cream); }
-.theme-bingo .cta-band, .theme-afterhours .cta-band, .theme-groupchat .cta-band, .theme-silly .cta-band, .theme-lovemedareme .cta-band { background: var(--accent); }
+.theme-bingo .cta-band, .theme-afterhours .cta-band, .theme-groupchat .cta-band, .theme-silly .cta-band, .theme-lovemedareme .cta-band, .theme-chale .cta-band { background: var(--accent); }
 
 /* Footer */
 .site-footer { background: var(--forest-ink); color: rgba(243, 235, 221, .7); padding: 80px 0 36px; margin-top: 100px; }
@@ -213,6 +232,7 @@ section { padding: 100px 0; }
 .theme-groupchat .inside { background: linear-gradient(165deg, #b8172f, #7a0e1f); }
 .theme-silly .inside { background: linear-gradient(165deg, #b3283e, #6f1222); }
 .theme-lovemedareme .inside { background: linear-gradient(165deg, #8c1a3c, #430b1d); }
+.theme-chale .inside { background: linear-gradient(165deg, #006b3f, #00391f); }
 .inside .kicker { color: var(--gold); }
 .inside .section-head h2 { color: var(--paper); }
 .inside .section-head p { color: rgba(243, 235, 221, .7); }
@@ -354,17 +374,9 @@ html, body { overscroll-behavior: none; max-width: 100%; }
 html { overflow-x: clip; }
 @supports not (overflow: clip) { html, body { overflow-x: hidden; } }
 
-/* Game cards: 5 across on desktop, compact rows on tablets (2 per row) and phones (1 per row) */
-@media (max-width: 1100px) {
-  .collection { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .game-card { flex-direction: row; gap: 4px; }
-  .game-card .media { width: 112px; flex: none; align-self: flex-start; }
-  .game-card .body { padding: 4px 6px 2px 12px; }
-  .game-card .meta { margin-bottom: 8px; }
-  .game-card .foot { padding-top: 8px; }
-  .game-card--next .media span { font-size: 1.2rem; }
-}
-@media (max-width: 560px) { .collection { grid-template-columns: 1fr; } }
+/* Game cards: 3 visible on desktop, 2 on tablets and 1 on phones; the rest scroll sideways */
+@media (max-width: 860px) { .collection .game-card { flex-basis: calc((100% - var(--gap)) / 2); } }
+@media (max-width: 560px) { .collection-carousel { max-width: 340px; } .collection .game-card { flex-basis: 100%; } }
 
 /* Smaller hero cards on phones */
 @media (max-width: 560px) {
