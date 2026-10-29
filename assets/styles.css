@@ -22,6 +22,8 @@
 .theme-silly { --accent: #a8203a; --accent-soft: #f7e0e4; }
 .theme-lovemedareme { --accent: #9b1b45; --accent-soft: #f8e1e9; }
 .theme-chale { --accent: #006b3f; --accent-soft: #e0efe6; }
+.theme-geniuses { --accent: #6a3fd1; --accent-soft: #efe8fd; }
+.theme-church { --accent: #1f6f99; --accent-soft: #ddf0f8; }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -183,7 +185,7 @@ section { padding: 100px 0; }
 .cta-band p { color: rgba(243, 235, 221, .75); max-width: 520px; margin: 0 auto 32px; }
 .cta-band .btn-primary { background: var(--paper); color: var(--forest); }
 .cta-band .btn-primary:hover { background: var(--cream); }
-.theme-bingo .cta-band, .theme-afterhours .cta-band, .theme-groupchat .cta-band, .theme-silly .cta-band, .theme-lovemedareme .cta-band, .theme-chale .cta-band { background: var(--accent); }
+.theme-bingo .cta-band, .theme-afterhours .cta-band, .theme-groupchat .cta-band, .theme-silly .cta-band, .theme-lovemedareme .cta-band, .theme-chale .cta-band, .theme-geniuses .cta-band, .theme-church .cta-band { background: var(--accent); }
 
 /* Footer */
 .site-footer { background: var(--forest-ink); color: rgba(243, 235, 221, .7); padding: 80px 0 36px; margin-top: 100px; }
@@ -233,6 +235,8 @@ section { padding: 100px 0; }
 .theme-silly .inside { background: linear-gradient(165deg, #b3283e, #6f1222); }
 .theme-lovemedareme .inside { background: linear-gradient(165deg, #8c1a3c, #430b1d); }
 .theme-chale .inside { background: linear-gradient(165deg, #006b3f, #00391f); }
+.theme-geniuses .inside { background: linear-gradient(165deg, #6a3fd1, #35206e); }
+.theme-church .inside { background: linear-gradient(165deg, #1f6f99, #0f3d57); }
 .inside .kicker { color: var(--gold); }
 .inside .section-head h2 { color: var(--paper); }
 .inside .section-head p { color: rgba(243, 235, 221, .7); }

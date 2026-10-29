@@ -8,6 +8,8 @@ Website for Playfully Speaking, the home of printable games for families, friend
 - `games/merry-mayhem-bingo.html`: Merry Mayhem Bingo: The Christmas Party Game
 - `games/after-hours.html`: After Hours: A Date Night Game for Two
 - `games/chale-you-dey.html`: Chale, You Dey? A Ghanaian Party Card Game
+- `games/little-geniuses.html`: Little Geniuses: Think, Play & Discover!
+- `games/truth-or-dare-church-edition.html`: Truth or Dare: Church Edition
 
 Shared styles and scripts live in `assets/`, product images in `images/`.
 
